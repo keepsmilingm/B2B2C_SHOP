@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="ZH-ch">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>漫天飞舞的小球</title>
+	<style>
+		.sky{
+			width: 1000px; 
+		
+			height: 800px; 
+			margin: 0px auto;
+			 border: 3px solid #000; 
+			 position: relative;
+			 }
+		.control {
+			margin: 0px auto; 
+			text-align: center; 
+			margin: 20px;
+			}
+		.ball{
+			width: 50px;
+			 height: 50px;
+			  border-radius: 50%;
+			   position: absolute;
+			}
+			button{
+				width:70px;
+			}
+	</style>
+	<script>
+	// 球类
+// 输入参数a, v分别的角度和速度
+function Ball() {
+    this.sky = document.getElementById("sky");
+	this.current_width = this.sky.offsetWidth-6;//减去两边的边框值
+    this.current_height = this.sky.offsetHeight-6;
+
+    this.a = Math.random()*2*Math.PI;//初始角度，弧度制
+    this.v = parseInt(Math.random()*8+4);//速度
+    
+    this.vx = 0;//当前小球的速度分量
+    this.vy = 0;
+    this.x = this.current_width/2;//当前小球的位置坐标
+	this.y = this.current_height/2;
+	
+    // 小球的颜色
+	this.colors=function(){
+		var bcolor="";
+			for(var j=0;j<3;j++){
+				bcolor+=parseInt(Math.random()*255)+",";//parseInt() 函数可解析一个字符串，并返回一个整数。
+			}
+			return "rgba("+bcolor+Math.random()+")";
+    };
+    
+    // 创建一个球, 并将其添加到天空中
+    this.ball = document.createElement('div');
+    this.ball.classList.add('ball');// 为代表球的div添加样式类"ball"
+    this.ball.style.background = this.colors();
+    this.ball.style.left = this.x + "px";// 小球产生的位置
+    this.ball.style.top = this.y + "px";
+    this.bwidth = 50;//小球的宽和高
+    this.bheight = 50;
+    this.sky.appendChild(this.ball);
+
+    // 计算当前球的速度分量
+    this.calVelocity = function (){
+        this.vx = this.v * Math.cos(this.a);
+        this.vy = this.v * Math.sin(this.a);
+    }
+    
+    // 计算当前球的位置
+    this.calPosition = function () {
+        this.x += this.vx;
+        this.y += this.vy;
+    }
+    
+    // 设置当前球的位置
+    this.setPosition = function () {
+        this.ball.style.left = this.x + "px";
+        this.ball.style.top  = this.y + "px";
+        // console.log(this.ball.style.left,this.ball.style.top);
+    }
+    
+    // 让当前球移动一帧
+    this.move = function() {
+        if(this.y>(this.current_height-this.bheight) || this.y<0){
+            this.vy = -this.vy;
+            this.ball.style.background = this.colors();
+        }
+        if(this.x>this.current_width-this.bwidth || this.x<0){
+            this.vx = -this.vx;
+            this.ball.style.background = this.colors();
+        }
+        this.calPosition();
+        this.setPosition();
+    }
+
+    // 启动当前球
+    this.start = function (){
+        this.calVelocity();
+    }
+
+    // 构建好当前球后, 调用this.start()一次, 以计算初始vx, vy
+    this.start();
+}
+
+// 目前已有的球
+var balls = [];
+
+// 创建球, 并将创建好的放入balls数组
+function createBalls() {
+    for(var i = 0; i < 30; i++) {
+       var ball =  new Ball();
+       balls.push(ball);
+    }
+}
+
+var timer = null;
+var flag = 1;
+// 启动游戏
+function startGame() {
+    if(flag == 1){
+        // 创建球
+        createBalls();
+        // 启动一个钟, 每隔10毫秒让所有还在飞的球移动一帧
+        timer = window.setInterval(function(){
+            for(var i = 0; i < balls.length; i++) {
+                balls[i].move();
+            }
+        }, 10);
+        flag = 2;
+    }
+    if(flag == 3){
+        timer = window.setInterval(function(){
+            for(var i = 0; i < balls.length; i++) {
+                balls[i].move();
+            }
+        }, 10);
+        flag = 2;
+    }
+}
+
+function pauseGame() {
+    if(flag == 2) {
+        window.clearInterval(timer);
+        flag = 3;
+    }
+}
+
+
+</script>
+
+</head>
+<body>
+	<div id="sky" class="sky"></div> 
+	<div class="control">
+		<button id="btn-start" onclick=startGame()>开始</button>
+		<button id="btn-pause" onclick=pauseGame()>暂停</button>
+	</div>
+	
+	
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商铺详情</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/detail.css"/>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/Underscore-min.js"></script>
+    <script src="js/MyFunc.js"></script>
+    <script src="js/tishikuang.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/orderstyle.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery.cookie.js"></script>
+
+</head>
+<body>
+<div >
+    <!--头部-->
+    <header id="header" class="headers">
+        <div id="header_in" class="headers-in">
+            <div class="headers-left">
+                <ul>
+                    <li class="logo-pic"><h1><a href="index.html">5+2商城</a></h1></li>
+                    <li><a href="">发现</a></li>
+                    <li><a href="">最新</a></li>
+                    <li><a href="">美思</a></li>
+                    <li><a href="">活动<span class="new">new</span></a></li>
+                    <li><a href="">教育</a></li>
+                    <li><a href="">...</a></li>
+                </ul>
+            </div>
+            <div class="headers-center">
+                <input id="query" name="query" size="27" type="text" placeholder="搜索你喜欢的" value="">
+            </div>
+        </div>
+    </header>
+    <!--中间广告切换-->
+    <!--快速登录-->
+    <div id="tab" class="tab">
+        <div id="tab_header" class="tab-header">
+        </div>
+        <div id="tab_content" class="tab-content">
+            <div class="dom" style="display: block">
+                <div id="page">
+                    <div id="content">
+                        <div class="tm-chaoshi-nav" data-spm="1998159256">
+                            <div class="layout">
+                                <div class="nav-extra">
+                                    <div id="cat"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dom-pull" id="dom_pull">
+
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<!--右边浮动-->
+<div id="elevator_item" class="elevator-item">
+    <a onclick="window.scrollTo(0,0);" class="plus"><img src="images/返回顶部.png" alt=""></a>
+</div>
+
+
+<script>
+    var BasicUrl=jQuery.getCookie("BasicUrl");
+    var idArray=[];//保存购物车商品ID
+    var priceAarry=[];
+
+    var str=location.href; //取得整个地址栏
+    var id_str=str.split("=");
+    var user_id=jQuery.getCookie("userId");
+    var seller_id=jQuery.getCookie("sellerId");
+    var isLogin=false;
+
+    var total=0;
+    var key_arr = ["B_id"];
+    var value_arr = [user_id];
+    var goods_info="";
+    if (user_id !== undefined && user_id !== null ){
+        goods_info="goods_info.html"
+    }
+    if(seller_id !== undefined && seller_id !== null){
+        goods_info="RW_goods_info.html"
+    }
+    // var sum=total;
+
+    window.onload=function () {
+        if(jQuery.getCookie("userId")!==undefined){
+            console.log(user_id);
+            isLogin=true;
+        }
+        jQuery.ajax({
+            //添加请求头以验证用户身份
+            // beforeSend: function(XHR) {
+            //     XHR.setRequestHeader("accesstoken", usertoken);
+            // },
+            type: 'POST',
+            data:{
+                St_id: id_str[1],
+            },
+            url: BasicUrl+"proByStore",
+            dataType: 'json',
+            success: function(datas) {
+                console.log(datas);
+
+
+                        var arrLen = datas.length;
+                        if(arrLen>0){
+                            var liebiao='';
+                            var store_name;
+                            var idArray=[];
+                            for(var i=0;i<arrLen;i++){
+                                idArray.push(datas[i].id);
+                                liebiao +=
+                                    '<div class="box" id="box'+i+'">'
+                                    +'<a href="'+goods_info+'?id='+datas[i].P_id+'"><img src="'+datas[i].P_image+'" alt="" class="pic"></a>'
+                                    +' <p>'+datas[i].P_name+"&nbsp;&nbsp;"+datas[i].P_desc+'</p>'
+                                    +' <span>￥'+datas[i].P_price+'</span>'
+                                    +'<div class="buy_bg">'
+                                    +'<p href="" class="add_car" onclick="Add2car(\''+datas[i].P_id+'\')"><img class="icon" src="images/加入购物车.png" id="A'+datas[i].id+'" alt="" ></p>'
+                                    +' <p href="" class="buy" onclick="Buy(\''+datas[i].P_id+'\')"><img  src="images/购买.png" id="X'+datas[i].id+'" alt=""></p>'
+                                    +'</div> '
+                                    +' </div>';
+                                store_name=datas[1].St_name;
+
+
+                            }
+
+                            jQuery('.dom-pull').append(liebiao);
+                            jQuery('#cat').append(store_name);
+                            // 如果没有数据
+                        }else{
+                            // 锁定
+                            tishi("无更多数据");
+
+                        }
+                        // 为了测试，延迟1秒加载
+                    },
+                    error: function(xhr, type){
+                        tishi('请求失败');
+                        // 即使加载出错，也得重置
+                    }
+                });
+    }
+    function Add2car(id) {
+
+        if(isLogin===false){
+            tishi("请先登陆再购买");
+        }else{
+
+            jQuery.ajax({
+                type: 'POST',
+                data:{
+                    B_id:user_id,
+                    P_id:id
+                },
+                url: BasicUrl+"ServletAddOrders",
+                dataType: 'json',
+                success: function(datas) {
+                    console.log(datas);
+                    if(datas.state===true){
+                        tishi("已加入购物车");
+                    }else{
+                        tishi("加入购物车失败，请重试");
+                    }
+                },
+                error: function(xhr, type){
+                    tishi('请求失败');
+                    // 即使加载出错，也得重置
+                }
+            });
+        }
+    }
+    //购买商品，跳转至结算页面
+    function Buy(id){
+        if(isLogin===false){
+            tishi("请先登陆再购买");
+        }else{
+            console.log(id);
+            window.location="login.html?id="+id;
+        }
+    }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=0">
+    <title>首页</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/Underscore-min.js"></script>
+    <script src="js/MyFunc.js"></script>
+    <script src="js/tishikuang.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/bubulle.js"></script>
+
+
+</head>
+<body>
+<div class="htmleaf-container">
+    <div class="wrapper">
+
+        <ul class="bg-bubbles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</div>
+    <div id="page" class="page">
+        <!--头部-->
+        <header id="header" class="headers">
+            <div id="header_in" class="headers-in" style="position: relative">
+                <div class="headers-left">
+                    <ul>
+                        <li class="logo-pic"><h1><a href="index.html">首页</a></h1></li>
+                        <li><a href="">发现</a></li>
+                        <li><a href="">最新</a></li>
+                        <li><a href="">美思</a></li>
+                        <li><a href="">活动<span class="new">new</span></a></li>
+                        <li><a href="">教育</a></li>
+                        <li><a href="">...</a></li>
+                    </ul>
+                </div>
+                <div class="headers-center" style="position: relative">
+                    <input id="query" name="query" size="27" type="text" placeholder="搜索你喜欢的" value="" >
+                    <span id='search' class="glyphicon glyphicon-search" style="position: absolute; left: 92%;top:28%;"> </span>
+                </div>
+                <div class="headers-right" id="headers_right" >
+                    <a  class="register" id="go_register" onclick="go_register()">
+                        <span class="text">注册</span>
+                    </a>
+                    <a href="#" class="login" id="login">
+                        <span class="text">登录</span>
+                    </a>
+
+                </div>
+                <div class="" id="user_icon" style="display: none;">
+                    <a href="" id="usericonbox" class="" style="background:#fff;border: none;margin-left:40px;height:48px;line-height: 48px">
+
+                    </a>
+
+
+                </div>
+                <button href="#" class="btn login" id="quit" style="display: none;position: absolute;top:6px;right: 1%">
+                    <span class="text">退出</span>
+                </button>
+
+            </div>
+        </header>
+
+        <!--快速登录-->
+
+        <!--吸顶效果-->
+        <section id="top_nav" class="top-nav">
+            <div class="top-nav-in">
+                <div class="left">
+                    <p>国内最优质图片灵感库</p>
+                    <p>已有数百万出众网友，用花瓣保存喜欢的图片。</p>
+                </div>
+                <div class="right">
+                    <ul>
+                        <li><p>用社交帐号直接登录：</p></li>
+                        <li><a href=""></a></li>
+                        <li><a href=""></a></li>
+                        <li><a href=""></a></li>
+                        <li><a href=""></a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!--类型标题-->
+        <section id="type_title"  class="type-title">
+            <div class="type-title-in">
+                <span class="line-left"></span>
+                <span>X+X商城</span>
+                <span class="line-right"></span>
+            </div>
+        </section>
+        <!--选项卡-->
+        <div id="tab" class="tab">
+            <div id="tab_header" class="tab-header">
+                <ul>
+                    <li class="current">服装</li>
+                    <li>数码</li>
+                    <li>酒水</li>
+                    <li>美妆</li>
+                    <li>零食</li>
+                    <li>百货</li>
+                    <li>更多>></li>
+                </ul>
+            </div>
+            <!--中间广告切换-->
+            <section id="slider_banner" class="slider-banner">
+                <ul>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                </ul>
+            </section>
+            <div id="tab_content" class="tab-content">
+                <div class="dom" style="display: block">
+                     <div class="dom_top">
+                         <ul>
+                             <li class="go_store">
+                                 <a title="5+2商城，陪你做生活的设计师" href="store.html?St_id=1">
+                                     <img src="images/top02.jpg" alt="">
+                                 </a>
+                             </li>
+                             <li class="go_store">
+                                 <a title="5+2商城，陪你做生活的设计师" href="store.html?St_id=2">
+                                     <img src="images/top03.jpg" alt="">
+                                 </a>
+                             </li>
+                             <li class="go_store">
+                                 <a title="5+2商城，陪你做生活的设计师" href="store.html?St_id=3">
+                                     <img src="images/top04.jpg" alt="">
+                                 </a>
+                             </li>
+                             <li class="go_store">
+                                 <a title="5+2商城，陪你做生活的设计师" href="store.html?St_id=4">
+                                     <img src="images/top05.jpg" alt="">
+                                 </a>
+                             </li>
+                             <li class="go_store">
+                                 <a title="5+2商城，陪你做生活的设计师" href="store.html?St_id=5">
+                                     <img src="images/top06.jpg" alt="">
+                                 </a>
+                             </li>
+                             <li class="go_store">
+                                 <a title="5+2商城，陪你做生活的设计师" href="store.html?St_id=6">
+                                     <img src="images/top07.jpg" alt="">
+                                 </a>
+                             </li>
+
+
+
+                             
+                         </ul>
+                     </div>
+
+                     <div class="dom-pull" id="dom_pull">
+
+                     </div>
+                    <p class="load_more" id="load_more">加载更多</p>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--右边浮动-->
+    <div id="elevator_item" class="elevator-item">
+
+        <a onclick="window.scrollTo(0,0);" class="plus"><img src="images/返回顶部.png" alt=""></a>
+        <br>
+    </div>
+    <!--登录面板-->
+    <section id="mask" class="mask">
+        <div id="mask_center" class="mask-center">
+            <!--关闭-->
+            <a href="#" class="close-btn" id="close_btn"></a>
+            <!--logo-->
+            <!--内容-->
+            <div class="center_box">
+                <!--第三方帐号登录-->
+                <div class="txtBox">
+                    <span></span>
+                    <span class="txt">使用第三方帐号登录</span>
+                    <span></span>
+                </div>
+                <!--按钮图片-->
+                <div class="buttons">
+                    <a href="#" title="微博帐号登录" rel="nofollow" class="weibo"></a>
+                    <a href="#" title="QQ帐号登录" rel="nofollow" class="qzone"></a>
+                    <a href="#" title="微信帐号登录" rel="nofollow" class="wechat"></a>
+                    <a href="#" title="豆瓣帐号登录" rel="nofollow" class="douban"></a>
+                    <a href="#" title="人人帐号登录" rel="nofollow" class="renren"></a>
+                </div>
+                <div class="txtBox">
+                    <span></span>
+                    <span class="txt">使用帐号登录</span>
+                    <span></span>
+                </div>
+                <!--表单-->
+                <form action="" method="post" class="mail-login">
+                    <select name="jigou" class="clear-input" id="per_type">
+                        <option value="buyer">买家</option>
+                        <option value="seller">卖家</option>
+                    </select>
+                    <input type="hidden" name="_ref" value="frame">
+                    <input type="text" name="email" placeholder="输入用户名" class="clear-input" id="username">
+                    <input name="password" type="password" placeholder="密码" class="clear-input" id="password">
+                    <a  class="btn btn18 rbtn" id="login_btn" onclick=login()>
+                        <span class="text"> 登录
+                        </span>
+                    </a>
+                </form>
+                <div class="switch-back">
+                    <a class="red-link">忘记密码»</a>
+                    还没有花瓣帐号？
+                    <a class="red-link">点击注册»</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--//注册面板-->
+    <section id="register_mask" class="mask" style="display: none">
+        <!--<div class="mask-center" >-->
+        <div class="container" style="width:100%;">
+            <div class="row" style="margin-top: 100px">
+
+                <div class="col-md-4"></div>
+
+                <div  style="background:#fff;padding:40px 80px;margin:0 auto;border:7px solid #ccc;width: 630px">
+                    <font style="color:#e5343a;">会员注册</font>USER REGISTER
+                    <form class="form-horizontal" >
+                        <div class="form-group">
+                            <label for="B_username" class="col-sm-2 control-label">用户名</label>
+                            <div class="col-sm-10" style="width: 77%;">
+                                <input id="B_username" type="text" class="form-control clear-input"  placeholder="请输入用户名用于登陆">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="register_type" class="col-sm-2 control-label" style="padding-left: 0">注册类型</label>
+                            <select name="jigou" class="clear-input" id="register_type" style="width: 77%;margin-left: 3%">
+                                <option value="buyer">买家</option>
+                                <option value="seller">卖家</option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group" >
+                            <label for="B_password" class="col-sm-2 control-label">密码</label>
+                            <div class="col-sm-10">
+                                <input id="B_password" type="password" class="form-control"  placeholder="请输入密码">
+                            </div>
+                        </div>
+                        <div class="form-group" >
+                            <label for="Rpassword" class="col-sm-2 control-label" style="padding-left: 0">确认密码</label>
+                            <div class="col-sm-10">
+                                <input id="Rpassword" type="password" class="form-control"  placeholder="请输入确认密码">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="B_phone" class="col-sm-2 control-label">电话</label>
+                            <div class="col-sm-10">
+                                <input id="B_phone" type="tel" class="form-control"  placeholder="请输入电话号码">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="B_nickname" class="col-sm-2 control-label">昵称</label>
+                            <div class="col-sm-10">
+                                <input id="B_nickname" type="tel" class="form-control"  placeholder="昵称">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="B_intro" class="col-sm-2 control-label" style="padding-left: 0">个性签名</label>
+                            <div class="col-sm-10">
+                                <input id="B_intro" type="tel" class="form-control"  placeholder="个性签名">
+                               </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="B_birthday" class="col-sm-2 control-label" style="padding-left: 0">出生日期</label>
+                            <div class="col-sm-10">
+                                <input id="B_birthday" type="date" class="form-control"  >
+                            </div>
+                        </div>
+                    </form>
+                    <div style="width:405px;margin:0 auto;">
+                        <button id="register_btn"  value="注册" name="submit"  style="height:35px;width:300px; margin:0 auto" class="btn btn-success" onclick="register()">注册</button>
+                        <button id="cancer"  value="取消" name="submit"  style="height:35px;width:100px; margin:0 auto" class="btn btn-danger" onclick="cancer()">取消</button>
+                    </div>
+                </div>
+
+                <div class="col-md-2"></div>
+
+            </div>
+        </div>
+        <!--</div>-->
+    </section>
+    <script>
+     
+        var BasicUrl="http://localhost:8080/B2B2C在线商城/";
+        
+        jQuery.addCookie({
+            path:"/",
+            key:"BasicUrl",
+            value:BasicUrl
+        });
+        var user_id=null;//已登陆用户ID
+        var seller_id=null;//已登陆用户ID
+        var isLogin=false; //判断登陆与否
+        window.onload=function () {
+            var goods_type=1;//商品类型
+            createbox(goods_type);//页面一加载就请求默认商品
+            user_id=jQuery.getCookie("userId");
+            seller_id=jQuery.getCookie("sellerId");
+            var final_id; 
+            if(user_id !== undefined && user_id !== null){
+                final_id=user_id;
+            }
+            if(seller_id !== undefined && seller_id !== null){
+                final_id=seller_id;
+            }
+            var nickName=jQuery.getCookie("nickName");
+            var headportrait=jQuery.getCookie("headportrait");
+
+            //刷新页面后判断用户刷新前是否已经登陆
+            if (user_id !== undefined && user_id !== null || seller_id !== undefined && seller_id !== null) {
+                console.log(final_id);
+                $$('headers_right').style.display = "none";
+                 var usernamebox= '<img src="' +headportrait + '" alt="" style="width:45px;height:45px;border-radius:50%;border: 1px solid #999">';
+                 var usericonbox= '<a href="person_info.html?id=' + final_id + '" style="border: none;margin-left:5px;text-align: left;'
+                    + 'text-decoration: none;height:48px;line-height: 48px;color: #999">'
+                    + '<span style="width:50px" >' + nickName + '</span></a>';
+                // var usernamebox='<span class="text" ></span>';
+                var goods_car = '';
+                goods_car += '<a  href="order_info.html?id=' + final_id + '" id="elevator" class="elevator" title="购物车">'
+                    + '<img src="images/加入购物车.png" alt=""></a><br>';
+                jQuery('#usericonbox').append(usericonbox);
+                jQuery('#user_icon').append(usernamebox);
+                jQuery('#elevator_item').append(goods_car);
+                $$('user_icon').style.display = "block";
+                $$("mask").style.display = "none";
+                $$("quit").style.display = "block";
+                isLogin = true;
+            } else {
+                $$('headers_right').style.display = "block";
+            }
+
+            (function (window) {
+
+                tab();
+                $$("login").onclick = function () {
+                    $$("mask").style.display = "block";
+                };
+                $$("close_btn").onclick = function () {
+                    $$("mask").style.display = "none";
+                };
+                // 6. 广告轮播
+                bannerAutoPlay();
+            })(window);
+
+            //点击底部按钮加载更多
+            var page=1;
+            jQuery('#load_more').click(function () {
+                createbox(goods_type,page);
+                page++;
+            });
+        };
+
+        jQuery('#quit').click(function (){
+            jQuery.deleteCookie("userId","/");
+            jQuery.deleteCookie("sellerId","/");
+            jQuery.deleteCookie("nickName","/");
+            jQuery.deleteCookie("headportrait","/");
+            user_id=null;
+            $$('headers_right').style.display="block";
+            $$('user_icon').style.display="none";
+            $$("quit").style.display="none";
+            location.reload()
+
+        });
+        jQuery('#search').click(function () {
+          var keyword=jQuery('#query').val();
+            console.log(keyword);
+            jQuery('.dom-pull').empty();//清除页面数据
+            jQuery.ajax({
+                //添加请求头以验证用户身份
+                // beforeSend: function(XHR) {
+                //     XHR.setRequestHeader("accesstoken", usertoken);
+                // },
+                type: 'POST',
+                data:{
+                    P_keyword:keyword,
+                },
+                url: BasicUrl+"/ProKeyword",
+                dataType: 'json',
+                success: function(datas){
+                    console.log(datas);
+
+
+                    var arrLen = datas.length;
+                    if(arrLen>0){
+                        var liebiao='';
+                        var idArray=[];
+                        for(var i=0;i<arrLen;i++){
+                            idArray.push(datas[i].id);
+                            liebiao +=
+                                '<div class="box" id="box'+i+'">'
+                                +'<a href="goods_info.html?id='+datas[i].P_id+'"><img src="'+datas[i].P_image+'" alt="" class="pic"></a>'
+                                +' <p>'+datas[i].P_name+"&nbsp;&nbsp;"+datas[i].P_desc+'</p>'
+                                +' <span>￥'+datas[i].P_price+'</span>'
+                                +'<div class="buy_bg">'
+                                +'<p href="" class="add_car" onclick="Add2car(\''+datas[i].P_id+'\')"><img class="icon" src="images/加入购物车.png" id="A'+datas[i].id+'" alt="" ></p>'
+                                +' <p  class="buy" onclick="Buy(\''+datas[i].P_id+'\')"><img  src="images/购买.png" id="X'+datas[i].id+'" alt=""></p>'
+                                +'</div> '
+                                +' </div>';
+                        }
+
+                        jQuery('.dom-pull').append(liebiao);
+                        // 如果没有数据
+                    }else{
+                        // 锁定
+                        tishi("无更多数据");
+
+                    }
+                    // 为了测试，延迟1秒加载
+                },
+                error: function(xhr, type){
+                    tishi('请求失败');
+                    // 即使加载出错，也得重置
+                }
+            });
+        });
+
+
+
+        var login_url=BasicUrl+'loginTest';
+        //登陆
+        // jQuery('#login-btn').click(function login (){
+        function login() {
+            // jQuery.trim()函数会移除字符串开始和末尾处的所有换行符，空格(包括连续的空格)和制表符。如果这些空白字符在字符串中间时，它们将被保留，不会被移除。
+            var username = jQuery.trim(jQuery("#username").val()).toString();
+            var password = jQuery.trim(jQuery("#password").val().toString());
+            var identity=jQuery("#per_type").val().toString();
+            console.log(username);
+            console.log(password);
+            console.log(identity);
+            jQuery.addCookie({
+                path:"/",
+                key:"identity",
+                value:identity
+            });
+
+            if (username == null || username === "") {
+                tishi("请输入用户名");
+                return;
+            }
+            if (password == null || password === "") {
+                tishi("请输入密码");
+                return;}
+            jQuery.ajax({
+                type: "post",
+                url: login_url,
+                data: {
+                    identity:identity,
+                    username: username,
+                    password: password
+                },
+                dataType: 'json',
+                //msg为后台返回信息
+                success: function (data) {
+                    console.log(data);
+                    var json_data = JSON.stringify(data);
+                    var usernamebox='';//用户名
+                    var usericonbox='';//用户头像
+                    // console.log(data);
+                    if(identity==="seller" && data!==null){
+                        jQuery.addCookie({
+                            path:"/",
+                            key:"sellerId",
+                            value:data.S_id
+                        });
+                        jQuery.addCookie({
+                            path:"/",
+                            key:"nickName",
+                            value:data.S_nickname
+                        });
+                        jQuery.addCookie({
+                            path:"/",
+                            key:"headportrait",
+                            value:data.S_headportrait
+                        });
+                        window.location.href="store.html?St_id="+data.St_no;
+                    }else{
+                        if (data!==null && data!=="") {
+                            $$('headers_right').style.display="none";
+                            usericonbox+='<img src="'+data.B_headportrait+'" alt="" style="width:45px;height:45px;border-radius:50%;border: 1px solid #999">';
+                            usernamebox+='<a href="person_info.html?id='+data.B_id+'"  id="usernamebox" style="border: none;margin-left:5px;text-align: left;'
+                                +'text-decoration: none;height:48px;line-height: 48px;color: #999">'
+                                +'<span style="width:50px" >'+data.B_nickname+'</span></a>';
+
+                            var goods_car='';
+                            goods_car+='<a  href="order_info.html?id='+data.B_id+'" id="elevator" class="elevator" title="回到顶部">'
+                                +'<img src="images/加入购物车.png" alt=""></a><br>';
+                            jQuery('#usericonbox').append(usericonbox);
+                            jQuery('#user_icon').append(usernamebox);
+                            jQuery('#elevator_item').append(goods_car);
+                            $$('user_icon').style.display="block";
+                            $$("mask").style.display = "none";
+                            $$("quit").style.display="block";
+                            isLogin=true;
+                            jQuery.addCookie({
+                                path:"/",
+                                key:"userId",
+                                value:data.B_id
+                            });
+                            jQuery.addCookie({
+                                path:"/",
+                                key:"nickName",
+                                value:data.B_nickname
+                            });
+                            jQuery.addCookie({
+                                path:"/",
+                                key:"headportrait",
+                                value:data.B_headportrait
+                            });
+
+                            tishi(data.B_username + "欢迎登陆");
+                            // setTimeout('location.reload()',1000)
+                        } else {
+                            tishi("密码或账户错误");
+                        }
+                    }
+
+                },
+                error: function (data) {
+                    var json_data = JSON.stringify(data);
+                    tishi('登陆失败')
+                }
+            });
+
+            // });
+        }
+
+        function go_register() {
+            $$('register_mask').style.display="block";
+        }
+        function cancer() {
+            $$('register_mask').style.display="none";
+        }
+        //注册
+        function register() {
+            var register_url =BasicUrl+"registerTest";
+            var key_arr = [];
+            var value_arr = [];
+            // var register_mask=jQuery('#regiser_mask');
+            var inputArr = jQuery('.form-control');//获取input控件
+            var textareaArr =jQuery('textarea');//获取input控件
+            var selectArr =jQuery('#register_type');//获取select控件
+            //3.循环处理input,并定义结果集
+            selectArr.each(function () {
+                //4.将每个input的值放进结果集
+                value_arr.push(jQuery(this).val());
+                key_arr.push(jQuery(this).attr('id'));
+            });
+            inputArr.each(function () {
+                //4.将每个input的值放进结果集
+                value_arr.push(jQuery(this).val());
+                key_arr.push(jQuery(this).attr('id'));
+            });
+            textareaArr.each(function () {
+                //4.将每个input的值放进结果集
+                value_arr.push(jQuery(this).val());
+                key_arr.push(jQuery(this).attr('id'));
+            });
+
+            console.log(key_arr);
+            console.log(value_arr);
+            var register_data = {};
+            addJson(register_data, key_arr, value_arr);//组织ajax 请求所需data
+
+            if(register_data.B_password===register_data.Rpassword){
+                jQuery.ajax({
+                    //添加请求头以验证用户身份
+                    // beforeSend: function(XHR) {
+                    //     XHR.setRequestHeader("accesstoken", usertoken);
+                    // },
+                    type: 'POST',
+                    data:register_data,
+                    url: register_url,
+                    dataType: 'json',
+                    success: function(datas) {
+
+                        if(datas.state===true){
+                            tishi("注册成功，请到登陆页面登陆");
+                            $$('register_mask').style.display="none";
+                        }else{
+                            tishi("注册失败，请重试");
+                        }
+
+
+                    },
+                    error: function(xhr, type){
+                        tishi('请求失败');
+                        // 即使加载出错，也得重置
+                    }
+                });
+            }else{
+                tishi("两次密码不一致！")
+            }
+
+
+        }
+        
+
+
+
+        //动态创建商品信息
+        function createbox(goods_type,page) {
+            jQuery.ajax({
+                //添加请求头以验证用户身份
+                // beforeSend: function(XHR) {
+                //     XHR.setRequestHeader("accesstoken", usertoken);
+                // },
+                type: 'POST',
+                data:{
+                    type:goods_type,
+                    page:page,
+                },
+                url: BasicUrl+"product",
+                dataType: 'json',
+                success: function(datas){
+                    console.log(datas);
+
+
+                    var arrLen = datas.length;
+                    if(arrLen>0){
+                        var liebiao='';
+                        var idArray=[];
+                        for(var i=0;i<arrLen;i++){
+                            idArray.push(datas[i].id);
+                            liebiao +=
+                                '<div class="box" id="box'+i+'">'
+                                +'<a href="goods_info.html?id='+datas[i].P_id+'"><img src="'+datas[i].P_image+'" alt="" class="pic"></a>'
+                                +' <p>'+datas[i].P_name+"&nbsp;&nbsp;"+datas[i].P_desc+'</p>'
+                                +' <span>￥'+datas[i].P_price+'</span>'
+                                +'<div class="buy_bg">'
+                                +'<p href="" class="add_car" onclick="Add2car(\''+datas[i].P_id+'\')"><img class="icon" src="images/加入购物车.png" id="A'+datas[i].id+'" alt="" ></p>'
+                                +' <p href="" class="buy" onclick="Buy(\''+datas[i].P_id+'\')"><img  src="images/购买.png" id="X'+datas[i].id+'" alt=""></p>'
+                                +'</div> '
+                                +' </div>';
+                        }
+
+                        jQuery('.dom-pull').append(liebiao);
+                        // 如果没有数据
+                    }else{
+                        // 锁定
+                        tishi("无更多数据");
+
+                    }
+                    // 为了测试，延迟1秒加载
+                },
+                error: function(xhr, type){
+                    tishi('请求失败');
+                    // 即使加载出错，也得重置
+                }
+            });
+        }
+
+        //简化ID选择器
+        function $$(id) {
+            return typeof id === "string" ? document.getElementById(id) : null;
+        }
+        function Add2car(id) {
+            if(isLogin===false){
+                tishi("请先登陆买家账号再购买");
+            }else{
+
+                jQuery.ajax({
+                    type: 'POST',
+                    data:{
+                        B_id:user_id,
+                        P_id:id
+                    },
+                    url: BasicUrl+"ServletAddOrders",
+                    dataType: 'json',
+                    success: function(datas) {
+                        console.log(datas);
+                        if(datas.state===true){
+                            tishi("已加入购物车");
+                        }else{
+                            tishi("加入购物车失败，请重试");
+                        }
+                    },
+                    error: function(xhr, type){
+                        tishi('请求失败');
+                        // 即使加载出错，也得重置
+                    }
+                });
+            }
+        }
+        //购买商品，跳转至结算页面
+        function Buy(id){
+            if(isLogin===false){
+                tishi("请先登陆再购买");
+            }else{
+                console.log(id);
+                window.location="order_info.html?id="+id;
+            }
+        }
+
+        /**
+         * 自动轮播
+         */
+        function bannerAutoPlay() {
+            // 1. 获取所有的li标签
+            var lis = document.getElementById('slider_banner').getElementsByTagName("li");
+            var index = 0;
+            // 2. 开始定时器
+            setInterval(function () {
+                // 2.1 改变透明度
+                for(var i=0; i<lis.length; i++){
+                    var singerLi = lis[i];
+                    buffer(singerLi, {opacity: 0}, null);
+                }
+                buffer(lis[index], {opacity: 1}, null);
+
+                // 2.2 索引++
+                index++;
+                if(index === lis.length){
+                    index = 0;
+                }
+            }, 3500);
+        }
+
+        /**
+         * 选项卡
+         */
+        function tab() {
+            // 1. 获取需要的标签
+            var allLis = document.getElementById('tab_header').getElementsByTagName("li");
+            var doms = document.getElementById('tab_content').getElementsByClassName("dom");
+            var lastOne = 0;
+
+            // 2. 遍历监听
+            for (var i = 0; i < allLis.length; i++) {
+                var li = allLis[i];
+                (function (i) {
+                    li.onmousedown = function () {
+                        //切换选项卡以切换商品类型
+                        goods_type=i+1;
+                        console.log("type:" + goods_type);
+                        // 1. 清除样式
+                        jQuery('.dom-pull').empty();//清除页面数据
+                        allLis[lastOne].className = "";
+                        // doms[lastOne].style.display = "none";
+                        // 2. 设置选中
+                        this.className = "current";
+                        createbox(goods_type);
+                        // doms[i].style.display = "block";
+                        // 3. 赋值
+                        lastOne = i;
+                    }
+                })(i);
+            }
+        }
+
+        //组织json函数
+        function addJson(data, key_arr, var_arr) {
+            for (var i = 0; i < key_arr.length; i++) {
+                data[key_arr[i]] = var_arr[i];
+                // if (var_arr[i] !== "") {
+                //     data[key_arr[i]] = var_arr[i];
+                // } else {
+                //     delete data[key_arr[i]];
+                // }
+            }
+            data = JSON.stringify(data);
+            console.log("data为:" + data);
+
+        }
+    </script>
+</body>
+</html>

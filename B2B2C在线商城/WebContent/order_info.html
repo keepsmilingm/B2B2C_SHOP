@@ -1,0 +1,376 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>5+2商城</title>
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="css/detail.css"/>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/Underscore-min.js"></script>
+	<script src="js/MyFunc.js"></script>
+	<script src="js/tishikuang.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/orderstyle.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/jquery.cookie.js"></script>
+
+</head>
+<body>
+<div >
+	<!--头部-->
+	<header id="header" class="headers">
+		<div id="header_in" class="headers-in">
+			<div class="headers-left">
+				<ul>
+					<li class="logo-pic"><h1><a href="index.html">5+2商城</a></h1></li>
+					<li><a href="">发现</a></li>
+					<li><a href="">最新</a></li>
+					<li><a href="">美思</a></li>
+					<li><a href="">活动<span class="new">new</span></a></li>
+					<li><a href="">教育</a></li>
+					<li><a href="">...</a></li>
+				</ul>
+			</div>
+			<div class="headers-center">
+				<input id="query" name="query" size="27" type="text" placeholder="搜索你喜欢的" value="">
+			</div>
+		</div>
+	</header>
+	<!--中间广告切换-->
+	<!--快速登录-->
+
+	<section id="mask" class="mask" style="display: none">
+		<div id="mask_center" class="mask-center">
+			<!--关闭-->
+			<a  class="close-btn" id="close_btn" style="cursor:pointer;"></a>
+			<!--logo-->
+			<!--内容-->
+			<div class="center_box">
+				<!--第三方帐号登录-->
+				<div class="txtBox">
+					<span></span>
+					<h2 class="txt" >确认支付</h2>
+					<span></span>
+				</div>
+				<!--按钮图片-->
+				<!--<div style="width:80px;margin:0 auto;">-->
+					<!--<h2>支付</h2>-->
+				<!--</div>-->
+				<div class="txtBox">
+					<span></span>
+					<span class="txt">---------</span>
+					<span></span>
+				</div>
+				<!--表单-->
+				<div  class="mail-login" id="paybox">
+
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--类型标题-->
+	<!--选项卡-->
+	<div id="tab" class="tab">
+		<div id="tab_header" class="tab-header">
+		</div>
+		<div id="tab_content" class="tab-content">
+			<div class="dom" style="display: block">
+				<div id="page">
+					<div id="content">
+
+						<div class="tm-chaoshi-nav" data-spm="1998159256">
+							<div class="layout">
+								<div class="nav-extra">
+									<div id="cat">购物车详情</div>
+								</div>
+							</div>
+						</div>
+						<div class="tm-crumbs">
+							<div class="tm-content">
+								<ul class="nav J_MallCrumbs"></ul>
+							</div>
+						</div>
+
+						<div class="container">
+							<div class="row">
+
+								<div style="margin:0 auto;margin-top:10px;width:950px;" >
+									<strong>购物车详情，数量为0则不购买</strong>
+									<table class="table table-bordered" >
+										<tbody id="tablebox">
+										<tr class="warning" id="carid">
+
+										</tr>
+										<tr class="warning">
+											<th>图片</th>
+											<th>商品</th>
+											<th>价格</th>
+											<th>数量</th>
+										</tr>
+										</tbody>
+									</table>
+								</div>
+
+								<div style="text-align:right;margin-right:120px;">
+									商品金额: <strong style="color:#ff6600;" id="total_price">￥</strong>
+								</div>
+
+							</div>
+
+							<div class="pay"  >
+								<hr/>
+								<form class="form-horizontal" style="margin-top:5px;margin-left:150px;">
+									<div class="form-group">
+										<label for="B_address" class="col-md-2 control-label ">地址</label>
+										<div class="col-md-10">
+											<input type="text" class="form-control receiver_info" id="B_address" placeholder="请输入收货地址" required>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="B_name" class="col-md-2 control-label">收货人</label>
+										<div class="col-md-10">
+											<input type="text" class="form-control receiver_info" id="B_name" placeholder="请输收货人" required>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="B_phone" class="col-md-2 control-label">电话</label>
+										<div class="col-md-10">
+											<input type="number" class="form-control receiver_info" id="B_phone" placeholder="请输入联系方式" required>
+										</div>
+									</div>
+								</form>
+
+								<hr/>
+
+								<div style="margin-top:5px;margin-left:150px;">
+									<strong>选择银行：</strong>
+									<p>
+										<br/>
+										<input type="radio" name="pd_FrpId" value="ICBC-NET-B2C" checked="checked" />工商银行
+										<img src="./bank_img/icbc.bmp" align="middle" />&nbsp;&nbsp;&nbsp;&nbsp;
+										<input type="radio" name="pd_FrpId" value="BOC-NET-B2C" />中国银行
+										<img src="./bank_img/bc.bmp" align="middle" />&nbsp;&nbsp;&nbsp;&nbsp;
+										<input type="radio" name="pd_FrpId" value="ABC-NET-B2C" />农业银行
+										<img src="./bank_img/abc.bmp" align="middle" />
+									</p>
+									<hr/>
+									<p style="text-align:right;margin-right:100px;">
+										<button  class="btn btn-danger" id="pay">确认付款
+										</button>
+									</p>
+									<hr/>
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<!--右边浮动-->
+<div id="elevator_item" class="elevator-item">
+	<a onclick="window.scrollTo(0,0);" class="plus"><img src="images/返回顶部.png" alt=""></a>
+</div>
+
+
+<script>
+	var BasicUrl=jQuery.getCookie("BasicUrl");
+	var idArray=[];//保存购物车商品ID
+	var priceAarry=[];
+	var str=location.href; //取得整个地址栏
+	var user_id=jQuery.getCookie("userId");
+	var total=0;
+	var key_arr = ["B_id"];
+	var value_arr = [user_id];
+	// var sum=total;
+
+	window.onload=function () {
+
+		jQuery.ajax({
+			//添加请求头以验证用户身份
+			// beforeSend: function(XHR) {
+			//     XHR.setRequestHeader("accesstoken", usertoken);
+			// },
+			type: 'POST',
+			data:{B_id:user_id},
+			url: BasicUrl+"ServletShopCar",
+			dataType:'json',
+			success: function(datas){
+				console.log(datas);
+				var arrLen = datas.length;
+				;
+				console.log(arrLen);
+				if(arrLen>0){
+					var liebiao='';
+					for(var i=0;i<arrLen;i++){
+						idArray.push(datas[i].P_id);
+						liebiao +=
+								'<tr class="active">'
+								+'<td width="20%" >'
+								+'<input type="hidden" name="id" value="22">'
+								+'<img src="'+datas[i].bean.P_image+'" width="70" height="60">'
+								+'</td>'
+								+'<td width="50%">'
+								+'<a target="_blank">'+datas[i].bean.P_name+"&nbsp;&nbsp;"+datas[i].bean.P_desc+'</a>'
+								+'</td>'
+								+'<td width="20%" class="unit_price" value="'+datas[i].bean.P_price+'">'+datas[i].bean.P_price+'</td>'
+								+'<td width="10%">'
+								+'<input type="text" name="quantity" value="'+datas[i].Pc_count+'" maxlength="4" size="10" class="count" id="'+datas[i].bean.P_id+'" onblur="cal()">'
+								+'</td>'
+								+'</tr>';
+						// typeof datas[i].bean.Pc_cou
+						total+=parseInt(datas[i].bean.P_price)*parseInt(datas[i].Pc_count);
+						priceAarry.push(datas[i].bean.P_price);
+						var carid='<th colspan="5">购物车编号:'+datas[0].Sc_id+' </th>'
+					}
+
+					jQuery('#tablebox').append(liebiao);
+					jQuery('#total_price').append(total);
+					jQuery('#carid').append(carid);
+					console.log(jQuery('.unit_price'));
+					console.log(jQuery('.count'));
+
+
+					// 如果没有数据
+				}else{
+					// 锁定
+					tishi("无更多数据");
+				}
+				// 为了测试，延迟1秒加载
+			},
+			error: function(xhr, type){
+				tishi('请求失败');
+				// 即使加载出错，也得重置
+			}
+		});
+
+	};
+	jQuery('#pay').click(function () {
+
+		// var register_mask=jQuery('#regiser_mask');
+		var inputArr = jQuery('.count');//获取input控件
+		var inputArr2 = jQuery('.receiver_info');//获取input控件
+		inputArr.each(function () {
+			//4.将每个input的值放进结果集
+			if (jQuery(this).val() !== "0") {
+				value_arr.push(jQuery(this).val());
+				key_arr.push(jQuery(this).attr('id'));
+			}
+		});
+		inputArr2.each(function () {
+			//4.将每个input的值放进结果集
+			if (jQuery(this).val() !== "") {
+				value_arr.push(jQuery(this).val());
+				key_arr.push(jQuery(this).attr('id'));
+			}
+		});
+
+		inputArr2.each(function () {
+			//4.将每个input的值放进结果集
+			if (jQuery(this).val() === "") {
+				tishi("请完善您的信息");
+			}
+		});
+		var paybox =
+				'<h3  class="txt" style="display: inline-block;font-size: 60px;margin-bottom: 30px">￥' + total + '</h3><br>'
+				+ '<button class="btn btn-success" style="width:100%;" id="final_pay" onclick="finalpay()">确认支付</button>';
+		jQuery('#paybox').empty();
+		jQuery('#paybox').append(paybox);
+		$$('mask').style.display = "block";
+		key_arr.push("Pc_sum");
+		value_arr.push(total);
+	});
+
+		function finalpay(){
+			console.log("hello");
+			var order_data = {};
+			addJson(order_data, key_arr, value_arr);//组织ajax 请求所需data
+			jQuery.ajax({
+				//添加请求头以验证用户身份
+				// beforeSend: function(XHR) {
+				//     XHR.setRequestHeader("accesstoken", usertoken);
+				// },
+				type: 'POST',
+				data:order_data,
+				url: BasicUrl+"ServletOrder",
+				dataType: 'json',
+				success: function(datas) {
+					console.log(datas);
+					if(datas.state===true){
+						tishi("付款成功");
+						setTimeout('location.reload()',2000)
+						// location.reload();
+					}else{
+						tishi("付款失败，请重试");
+					}
+
+				},
+				error: function(xhr, type){
+					tishi('请求失败');
+					// 即使加载出错，也得重置
+				}
+			});
+		}
+
+
+
+
+
+
+		//3.循环处理input,并定义结果集
+
+
+
+		jQuery('#close_btn').click(function () {
+			$$('mask').style.display="none";
+		});
+
+	function cal() {
+
+		var sum=0;
+		var count = jQuery('.count');
+
+		for (var i = 0; i < count.length; i++) {
+
+			sum+=priceAarry[i]*count[i].value;
+
+		}
+		jQuery('#total_price').empty();
+		jQuery('#total_price').append("￥"+sum);
+		total=sum;
+
+	}
+
+
+
+
+
+	//组织json函数
+	function addJson(data, key_arr, var_arr) {
+		for (var i = 0; i < key_arr.length; i++) {
+			data[key_arr[i]] = var_arr[i];
+			// if (var_arr[i] !== "") {
+			//     data[key_arr[i]] = var_arr[i];
+			// } else {
+			//     delete data[key_arr[i]];
+			// }
+		}
+		data = JSON.stringify(data);
+		console.log("data为:" + data);
+
+	}
+
+	function $$(id) {
+		return typeof id === "string" ? document.getElementById(id) : null;
+	}
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5+2商城</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/detail.css"/>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/Underscore-min.js"></script>
+    <script src="js/MyFunc.js"></script>
+    <script src="js/tishikuang.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/orderstyle.css">
+    <script src="js/jquery.cookie.js"></script>
+
+
+</head>
+<body>
+<div >
+
+    <!--头部-->
+    <header id="header" class="headers">
+        <div id="header_in" class="headers-in">
+            <div class="headers-left">
+                <ul>
+                    <li class="logo-pic"><h1><a href="index.html">5+2商城</a></h1></li>
+                    <li><a href="">发现</a></li>
+                    <li><a href="">最新</a></li>
+                    <li><a href="">美思</a></li>
+                    <li><a href="">活动<span class="new">new</span></a></li>
+                    <li><a href="">教育</a></li>
+                    <li><a href="">...</a></li>
+                </ul>
+            </div>
+            <div class="headers-center">
+                <input id="query" name="query" size="27" type="text" placeholder="搜索你喜欢的" value="">
+            </div>
+        </div>
+    </header>
+
+    <!--选项卡-->
+    <div id="tab" class="tab">
+        <div id="tab_header" class="tab-header">
+        </div>
+        <div id="tab_content" class="tab-content">
+            <div class="dom" style="display: block">
+                <div id="page">
+                    <div id="content">
+
+                        <div class="tm-chaoshi-nav" data-spm="1998159256">
+                            <div class="layout">
+                                <div class="nav-extra">
+                                    <div id="cat">个人信息</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tm-crumbs">
+                            <div class="tm-content">
+                                <ul class="nav J_MallCrumbs"></ul>
+                            </div>
+                        </div>
+
+                        <div class="container_fluid">
+                            <section id="zichan_info">
+
+                            </section>
+                            <section id="hide_box" style="">
+                                <ul class="list-head" id="info_box">
+
+                                </ul>
+                                <div class="footer" id="sub_btn">
+                                    <button type="button" class="btn btn-success" id="go_update">提交修改</button>
+                                </div>
+                            </section>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    var BasicUrl=jQuery.getCookie("BasicUrl");
+    var user_id;
+    var str=location.href; //取得整个地址栏
+    var id_str=str.split("=");//分割参数
+    var identity=jQuery.getCookie("identity");
+    var Servlet="";
+    console.log(id_str[1]);
+    if(jQuery.getCookie("userId")!==undefined){
+        user_id=jQuery.getCookie("userId");
+    }else{
+        user_id=jQuery.getCookie("sellerId");
+    }
+    if(identity==="buyer"){
+        Servlet="ServletBuyer"
+    }
+    if(identity==="seller"){
+        Servlet="ServletSeller"
+    }
+    window.onload=function () {
+        jQuery.ajax({
+            type: "post",
+            url: BasicUrl+Servlet,
+            data: {
+                identity:identity,
+                id:id_str[1]
+            },
+            dataType: 'json',
+            //msg为后台返回信息
+            success: function (data) {
+                console.log(data);
+                if(identity==="buyer"){
+                    var info=
+                        '<li class="list-group-item " style="width:60%;margin:0 auto;" bor>'
+                        +'<img id="iconimg" src="'+data.B_headportrait+'" alt="" style="width:70px;height:70px;border-radius:50%">'
+                        +'<br>'
+                        +'<label for="file" class="select_input" id="file_label" style="margin-top: 30px;margin-left: 20px;border-bottom: none;">点击选择文件</label>'
+                        +'<input type="file" id="file"  style="display: none" placeholder="点击选择文件">'
+                        +'</li>'
+                        +'<li class="list-group-item">'
+                        +'<span class="title">用户名</span>'
+                        +'<input type="text" id="username" class="select_input" placeholder="'+data.B_username+'" readonly>'
+                        +'</li>'
+                        +'<li class="list-group-item">'
+                        +'<span class="title">密码</span>'
+                        +'<input type="password" id="password" class="select_input" placeholder="请输入新密码">'
+                        +'</li>'
+                        +'<li class="list-group-item">'
+                        +'<span class="title">昵称</span>'
+                        +'<input type="text" id="nickName" class="select_input" placeholder="'+data.B_nickname+'">'
+                        +'</li>'
+                        +'<li class="list-group-item">'
+                        +'<span class="title">手机</span>'
+                        +'<input type="text" id="phone" class="select_input" placeholder="'+data.B_phone+'">'
+                        +'</li>'
+                        +'<li class="list-group-item ">'
+                        +'<span class="title">个人描述</span>'
+                        +'<textarea id="intro" class="select_input" placeholder="'+data.B_intro+'"></textarea>'
+                        +'</li>';
+                }
+                if(identity==="seller"){
+                    var info=
+                        '<li class="list-group-item " style="width:60%;margin:0 auto;" bor>'
+                        +'<img id="iconimg" src="'+data.S_headportrait+'" alt="" style="width:70px;height:70px;border-radius:50%">'
+                        +'<br>'
+                        +'<label for="file" class="select_input" id="file_label" style="margin-top: 30px;margin-left: 20px;border-bottom: none;">点击选择文件</label>'
+                        +'<input type="file" id="file"  style="display: none" placeholder="点击选择文件">'
+                        +'</li>'
+                        +'<li class="list-group-item">'
+                        +'<span class="title">用户名</span>'
+                        +'<input type="text" id="username" class="select_input" placeholder="'+data.S_username+'" readonly>'
+                        +'</li>'
+                        +'<li class="list-group-item">'
+                        +'<span class="title">密码</span>'
+                        +'<input type="password" id="password" class="select_input" placeholder="请输入新密码">'
+                        +'</li>'
+                        +'<li class="list-group-item">'
+                        +'<span class="title">昵称</span>'
+                        +'<input type="text" id="nickName" class="select_input" placeholder="'+data.S_nickname+'">'
+                        +'</li>'
+                        +'<li class="list-group-item">'
+                        +'<span class="title">手机</span>'
+                        +'<input type="text" id="phone" class="select_input" placeholder="'+data.S_phone+'">'
+                        +'</li>'
+                        +'<li class="list-group-item ">'
+                        +'<span class="title">个人描述</span>'
+                        +'<textarea id="intro" class="select_input" placeholder="'+data.S_intro+'"></textarea>'
+                        +'</li>';
+                        // +'<li class="list-group-item ">'
+                        // +'<span class="title">店铺名称</span>'
+                        // +'<input id="st_name" class="select_input" placeholder="'+data.St_name+'">'
+                        // +'</li>'
+                        // +'<li class="list-group-item ">'
+                        // +'<span class="title">店铺简介描述</span>'
+                        // +'<textarea id="st_desc" class="select_input" placeholder="'+data.St_desc+'"></textarea>'
+                        // +'</li>';
+                }
+
+
+                    jQuery('#info_box').append(info);
+
+            },
+            error: function (data) {
+                tishi('请求个人信息失败');
+            }
+        });
+        jQuery('#file').change(function () {
+            console.log("file");
+            try{
+                var path=document.getElementById('file').files[0];
+                var path2=document.getElementById('file').value;
+                console.log(path);
+                console.log(path2);
+                jQuery('#file_label').html(path2);
+                jQuery('#iconimg').attr("src",path2);
+                // console.log($('#iconimg').src);
+            }catch (e) {
+                e.toString();
+            }
+
+        });
+
+    };
+
+    jQuery('#go_update').click(function () {
+        var key_arr = ["id","identity"];
+        var value_arr = [user_id,identity];
+        // var register_mask=jQuery('#regiser_mask');
+        var inputArr = jQuery('input');//获取input控件
+        var textareaArr =jQuery('textarea');//获取input控件
+        var selectArr =jQuery('select');//获取select控件
+        //3.循环处理input,并定义结果集
+        selectArr.each(function () {
+            //4.将每个input的值放进结果集
+            value_arr.push(jQuery(this).val());
+            key_arr.push(jQuery(this).attr('id'));
+        });
+        inputArr.each(function () {
+            //4.将每个input的值放进结果集
+            value_arr.push(jQuery(this).val());
+            key_arr.push(jQuery(this).attr('id'));
+        });
+        textareaArr.each(function () {
+            //4.将每个input的值放进结果集
+            value_arr.push(jQuery(this).val());
+            key_arr.push(jQuery(this).attr('id'));
+        });
+
+        console.log(key_arr);
+        console.log(value_arr);
+        var update_data = {};
+        addJson(update_data, key_arr, value_arr);//组织ajax 请求所需data
+
+        jQuery.ajax({
+            //添加请求头以验证用户身份
+            // beforeSend: function(XHR) {
+            //     XHR.setRequestHeader("accesstoken", usertoken);
+            // },
+            type: 'POST',
+            data:update_data,
+            url: BasicUrl+"ServletUpdate",
+            dataType: 'json',
+            success: function(datas) {
+                console.log(datas);
+                console.log(datas.state);
+                if(datas.state===true){
+                    tishi("修改成功");
+                    setTimeout('location.reload()',1000)
+                }else{
+                    tishi("修改失败，请重试");
+                }
+
+
+            },
+            error: function(xhr, type){
+                tishi('请求失败');
+                // 即使加载出错，也得重置
+            }
+        });
+    });
+
+    //组织json
+    function addJson(data, key_arr, var_arr) {
+        for (var i = 0; i < key_arr.length; i++) {
+            data[key_arr[i]] = var_arr[i];
+            // if (var_arr[i] !== "") {
+            //     data[key_arr[i]] = var_arr[i];
+            // } else {
+            //     delete data[key_arr[i]];
+            // }
+        }
+        data = JSON.stringify(data);
+        console.log("data为:" + data);
+
+    }
+
+    function $$(id) {
+        return typeof id === "string" ? document.getElementById(id) : null;
+    }
+
+
+
+</script>
+</body>
+</html>
